@@ -8,9 +8,9 @@ Per-conversation skill catalog picker for [DeepSeek Harness (dsh)](https://deeps
 
 - 新建对话的开始页，「工作目录」「agent 预设」chip 旁新增「技能清单」chip；对话开始后自动消失。
 - 勾选的 skill 会把其清单条目载入本对话：模型看到的技能目录（`<available_skills>`）只包含勾选的技能。
-- 未勾选的 skill 在本对话**不可用**：
+- 未勾选的 skill 在本对话**不可用**（模型目录、`/名称` 手势与 `skill` 工具都会拒绝）。
 - 没有做过选择的对话保持 dsh 默认行为（全部载入）。
-- 选择状态以 `skill-loader/selection` 日志事件持久化，刷新/重启后依然准确。
+- 选择状态存储在 dsh settings（`skill-loader` 命名空间，`$DSH_HOME/settings.yaml`），刷新/重启后依然准确。
 
 > 位置说明：开始页那一行是内置 UI 里硬编码的 JSX，只声明了两个 single 槽位（均被内置选择器占用），插件无法在其中声明第三个槽位。本插件因此在该行内**追加自己的 chip 节点**并用 react-dom 渲染（锚点：`[data-phase="hero"]` 内的 `button[aria-haspopup="menu"]`，由 MutationObserver 在 React 重挂载后自动恢复），仅当当前会话处于 blank（未开始对话）时出现。
 
@@ -22,11 +22,13 @@ Per-conversation skill catalog picker for [DeepSeek Harness (dsh)](https://deeps
 
 ## 实现要点
 
-- 宿主端零依赖（仅 `node:crypto`），`link:` 安装可直接启动。
 - 目录接管：宿主 `agent/pre-step` 监听器在 dsh-tool-skill 之后运行，丢弃其未过滤目录并发布自己的过滤目录（沿用 `skill-catalog` 来源与 `source.entries` 格式，保证 dsh 自带的历史/摘要逻辑一致，避免每轮重发）。
 - 拦截：`tools/pre-execute` 瀑布拒绝未选技能的 `skill` 调用；手势注入按选择过滤。
+- 选择状态写入 dsh settings（`$DSH_HOME/settings.yaml`），不写自定义会话事件类型——该 dsh 版本会因未知事件类型拒绝加载会话日志（`SessionFormatUnsupportedError`）。
 
 ## 安装
+
+> `<profile>` 是占位符：换成你的 profile 名（Web 界面默认是 `web`；可用 `dsh --profile <name>` 启动指定 profile）。
 
 从 GitHub 安装（推荐）：
 
