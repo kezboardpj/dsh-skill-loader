@@ -9,9 +9,6 @@ Per-conversation skill catalog picker for [DeepSeek Harness (dsh)](https://deeps
 - 新建对话的开始页，「工作目录」「agent 预设」chip 旁新增「技能清单」chip；对话开始后自动消失。
 - 勾选的 skill 会把其清单条目载入本对话：模型看到的技能目录（`<available_skills>`）只包含勾选的技能。
 - 未勾选的 skill 在本对话**不可用**：
-  - 模型目录里不出现；
-  - `/name` 手势被拒绝（注入一条“未载入”提示）；
-  - 模型直接调用 `skill` 工具会被 `tools/pre-execute` 拒绝。
 - 没有做过选择的对话保持 dsh 默认行为（全部载入）。
 - 选择状态以 `skill-loader/selection` 日志事件持久化，刷新/重启后依然准确。
 
@@ -31,7 +28,7 @@ Per-conversation skill catalog picker for [DeepSeek Harness (dsh)](https://deeps
 
 ## 安装
 
-从 GitHub 安装（推荐，供其他用户使用）：
+从 GitHub 安装（推荐）：
 
 ```sh
 dsh plugin --profile <profile> add https://github.com/<user>/dsh-skill-loader.git
