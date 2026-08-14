@@ -31,13 +31,13 @@ Per-conversation skill catalog picker for [DeepSeek Harness (dsh)](https://deeps
 从 GitHub 安装（推荐）：
 
 ```sh
-dsh plugin --profile <profile> add https://github.com/<user>/dsh-skill-loader.git
+dsh plugin --profile web add https://github.com/<user>/dsh-skill-loader.git
 ```
 
 或从本地目录安装：
 
 ```sh
-dsh plugin --profile <profile> add ./dsh-skill-loader
+dsh plugin --profile web add ./dsh-skill-loader
 ```
 
 安装后重启该 profile 的 dsh（已安装插件不做热加载）。
