@@ -31,7 +31,7 @@ Per-conversation skill catalog picker for [DeepSeek Harness (dsh)](https://deeps
 从 GitHub 安装（推荐）：
 
 ```sh
-dsh plugin --profile web add https://github.com/<user>/dsh-skill-loader.git
+dsh plugin --profile web add https://github.com/kezboardpj/dsh-skill-loader.git
 ```
 
 或从本地目录安装：
