@@ -1,6 +1,6 @@
 {
   "name": "dsh-skill-loader",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Per-conversation skill catalog picker for DeepSeek Harness (dsh): choose which skills are loaded (载入技能清单) into each conversation on the new-conversation page; unselected skills are unavailable in that conversation.",
   "type": "module",
   "license": "MIT",
@@ -19,6 +19,10 @@
     "./package.json": "./package.json"
   },
   "files": ["lib/index.js", "lib/client.js", "cordis.patch.yml"],
+  "dependencies": {
+    "@deepseek-ai/dsh-settings": "^0.1.0-rc.6",
+    "@deepseek-ai/schemastery": "^3.18.1"
+  },
   "dsh": {
     "bundle": {
       "patch": "./cordis.patch.yml"
