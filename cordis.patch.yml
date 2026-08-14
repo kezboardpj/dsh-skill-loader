@@ -1,0 +1,5 @@
+# Host row for dsh-skill-loader. The row mounts the host half (commands) and
+# lets dsh-client-modules discover the browser bundle declared in package.json.
+- insert:
+    - id: skill-loader
+      name: 'dsh-skill-loader'
