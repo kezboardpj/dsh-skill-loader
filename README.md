@@ -1,5 +1,7 @@
 # dsh-skill-loader
 
+[English](README.en.md) | 中文
+
 Per-conversation skill catalog picker for [DeepSeek Harness (dsh)](https://deepseek-harness.github.io/deepseek-harness/): on the new-conversation page, choose which skills get their catalog entries (name + description) **loaded into this conversation** (载入技能清单). Unselected skills are unavailable in that conversation.
 
 每个对话可以选择要**载入的技能清单**（name + description）。
@@ -19,6 +21,7 @@ Per-conversation skill catalog picker for [DeepSeek Harness (dsh)](https://deeps
 | 命令 | 说明 |
 |---|---|
 | `/skill-select <name1,name2,...>` | 将本对话的技能清单设为这些技能（逗号分隔；无参数=清空） |
+| `/skill-unarchive <sessionId1,...>` | 取消归档指定会话，使其重新出现在侧边栏（dsh 界面本身没有取消归档入口） |
 
 ## 实现要点
 
