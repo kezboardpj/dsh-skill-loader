@@ -46,6 +46,27 @@ dsh plugin --profile web add ./dsh-skill-loader
 
 （注：`dsh plugin add` 不能处理含空格的路径；路径含空格时请直接编辑 profile 的 package.json 依赖 + `dsh.profile.bundles` 后运行 `pnpm install`。）
 
+## 从 0.1 升级
+
+全新安装的用户直接执行上面的安装命令即可，装到的就是 0.2.0。已安装 0.1 的用户按以下顺序升级（全程 dsh 保持停止）：
+
+1. 运行修复脚本，让被 0.1 写坏的历史会话日志恢复可读（原文件自动备份为 `.bak`）：
+
+   ```sh
+   node scripts/repair-v01-logs.mjs
+   ```
+
+2. 更新插件本身（git 依赖更新到最新提交，自动装上新依赖）：
+
+   ```sh
+   cd <你的 profile 目录>
+   pnpm update dsh-skill-loader
+   ```
+
+3. 重启 dsh。
+
+注意：0.1 是用本地目录（link）安装的用户需要改为 Git 安装（0.2 的宿主端有依赖，link 安装的裸目录无法解析）；另外修复后的旧会话中 0.1 时期的选择不再生效，会回到默认「全部载入」，重新勾选即可。
+
 ## 更新日志
 
 ### 0.2.0（2026-08-15）
