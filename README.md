@@ -2,9 +2,7 @@
 
 [English](README.en.md) | 中文
 
-Per-conversation skill catalog picker for [DeepSeek Harness (dsh)](https://deepseek-harness.github.io/deepseek-harness/): on the new-conversation page, choose which skills get their catalog entries (name + description) **loaded into this conversation** (载入技能清单). Unselected skills are unavailable in that conversation.
-
-每个对话可以选择要**载入的技能清单**（name + description）。
+[DeepSeek Harness (dsh)](https://deepseek-harness.github.io/deepseek-harness/) 的按对话技能清单选择器：新建对话时选择要把哪些技能的清单条目（name + description）**载入本对话**（载入技能清单）；未勾选的技能在该对话中不可用。
 
 ## 功能
 
