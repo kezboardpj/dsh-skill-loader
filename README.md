@@ -50,7 +50,7 @@ dsh plugin --profile web add ./dsh-skill-loader
 
 全新安装的用户直接执行上面的安装命令即可，装到的就是 0.2.0。已安装 0.1 的用户按以下顺序升级（全程 dsh 保持停止）：
 
-1. 运行修复脚本，让被 0.1 写坏的历史会话日志恢复可读（原文件自动备份为 `.bak`）：
+1. 运行修复脚本，让被 0.1 写坏的历史会话日志恢复可读（原文件自动备份为 `.bak`；脚本是幂等的，没有受影响日志时直接输出 nothing to repair。从未在 0.1 里勾选过技能、没有产生过 `skill-loader/selection` 事件的用户可以跳过这一步，其余用户跳过会导致旧会话升级后仍然打不开）：
 
    ```sh
    node scripts/repair-v01-logs.mjs
