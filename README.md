@@ -46,6 +46,14 @@ dsh plugin --profile web add ./dsh-skill-loader
 
 （注：`dsh plugin add` 不能处理含空格的路径；路径含空格时请直接编辑 profile 的 package.json 依赖 + `dsh.profile.bundles` 后运行 `pnpm install`。）
 
+## 更新日志
+
+### 0.2.0（2026-08-15）
+
+**问题**：勾选技能后重启 dsh，再打开该会话报 `SessionFormatUnsupportedError`（历史加载失败）。原因是 0.1 把选择状态写成了自定义会话事件 `skill-loader/selection`，而 dsh 的日志加载器不认识未知事件类型（当前版本也未提供第三方插件注册自定义事件的接口），于是拒绝解析整份会话日志。
+
+**解决**：选择状态改存 dsh 官方 settings（`$DSH_HOME/settings.yaml` 的 `skill-loader` 命名空间），不再写任何自定义日志事件；宿主端新增 `@deepseek-ai/dsh-settings`、`@deepseek-ai/schemastery` 依赖，安装方式推荐从 GitHub 安装。受影响的旧会话日志可用修复脚本给旧事件补上 `ignorable` 标记后恢复读取。
+
 ## License
 
 [MIT](./LICENSE)
